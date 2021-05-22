@@ -14,13 +14,31 @@ export class UIStore {
         makeAutoObservable(this);
     }
 
-    setFrom = (currencyCode: string) => {
-        this.from = currencyCode;
+    setFrom = (currencyCode?: string | null) => {
+        this.from = currencyCode || '';
     };
-    setTo = (currencyCode: string) => {
-        this.to = currencyCode;
+    setTo = (currencyCode?: string | null) => {
+        this.to = currencyCode || '';
     };
-    setAmount = (amount: number) => {
+    setAmount = (amount?: number | string | null) => {
+        if (!amount) {
+            this.amount = 1;
+            return;
+        }
+
+        if (typeof amount === 'string') {
+            const converted = Number(amount);
+            if (isNaN(converted)) {
+                // TODO: proper error handling
+                console.log(
+                    `Invalid input was provided as amount to UIStore: ${amount}`
+                );
+                return;
+            }
+            this.amount = converted;
+            return;
+        }
+
         this.amount = amount;
     };
 }

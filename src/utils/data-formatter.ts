@@ -4,7 +4,7 @@
  * @returns {number}
  */
 export const formatExchangeData = (data: CurrentExchangeFromAPI): number => {
-    return 1;
+    return Number(data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
 };
 
 /**
@@ -14,4 +14,12 @@ export const formatExchangeData = (data: CurrentExchangeFromAPI): number => {
  */
 export const formatExchangeTrendData = (
     data: DailyExchangeFromAPI
-): ExchangeTrendData => {};
+): ExchangeTrendData => [
+    {
+        date: 'now',
+        open: 1,
+        close: 2,
+        low: 1,
+        high: 2,
+    },
+];

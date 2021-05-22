@@ -14,6 +14,11 @@ export class ExchangeRateStore {
     }
 
     getExchangeRate = ({ from, to }: { from: string; to: string }): void => {
+        if (!from || !to) {
+            // TODO: proper exception handling
+            return;
+        }
+
         this.loading = true;
 
         getExchangeRateFromAPI({ from, to })
