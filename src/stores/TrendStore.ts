@@ -13,7 +13,7 @@ export class TrendStore {
         makeAutoObservable(this);
     }
 
-    getExchangeRate = ({ from, to }: { from: string; to: string }): void => {
+    getTrendData = ({ from, to }: { from: string; to: string }): void => {
         this.loading = true;
 
         getExchangeTrendDataFromAPI({ from, to })

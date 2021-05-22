@@ -9,6 +9,7 @@ const App = () => (
         <Converter
             uiStore={stores.uiStore}
             dataStore={stores.exchangeRateStore}
+            trendStore={stores.trendStore}
         />
         <TrendChart dataStore={stores.trendStore} />
         <footer className={styles.border}>by Eszter Hofmann</footer>

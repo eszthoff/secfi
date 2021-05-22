@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
 import TextField from '@material-ui/core/TextField';
-import { UIStore, ExchangeRateStore } from '../../stores';
+import { UIStore, ExchangeRateStore, TrendStore } from '../../stores';
 import { CurrencySelector } from '../CurrencySelector';
 import styles from './Converter.module.css';
 
 interface Props {
     uiStore: UIStore;
     dataStore: ExchangeRateStore;
+    trendStore: TrendStore;
 }
 
 export const Converter: React.FC<Props> = observer((props) => {
     const {
         uiStore: { from, to, setFrom, setTo, amount, setAmount },
         dataStore: { rate, getExchangeRate },
+        trendStore: { getTrendData },
     } = props;
 
     const handleAmountUpdate = (
@@ -26,6 +28,7 @@ export const Converter: React.FC<Props> = observer((props) => {
         setFrom(value);
         if (value) {
             getExchangeRate({ from: value, to });
+            getTrendData({ from: value, to });
         }
     };
 
@@ -33,6 +36,7 @@ export const Converter: React.FC<Props> = observer((props) => {
         setTo(value);
         if (value) {
             getExchangeRate({ from, to: value });
+            getTrendData({ from, to: value });
         }
     };
 
