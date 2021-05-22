@@ -14,7 +14,7 @@ interface Props {
 export const Converter: React.FC<Props> = observer((props) => {
     const {
         uiStore: { from, to, setFrom, setTo, amount, setAmount },
-        dataStore: { rate, getExchangeRate },
+        dataStore: { getExchangeRate },
         trendStore: { getTrendData },
     } = props;
 
@@ -62,8 +62,6 @@ export const Converter: React.FC<Props> = observer((props) => {
                     label="Target currency"
                 />
             </div>
-            <h2>Current rate</h2>
-            <p>{`${amount} ${from} => ${amount * rate} ${to}`}</p>
         </>
     );
 });

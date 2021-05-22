@@ -6,7 +6,6 @@ import {
     XAxis,
     YAxis,
     Tooltip,
-    Legend,
     Line,
 } from 'recharts';
 import { TrendStore } from '../../stores';
