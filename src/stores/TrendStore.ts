@@ -13,19 +13,32 @@ export class TrendStore {
         makeAutoObservable(this);
     }
 
+    setTrendData = (data: ExchangeTrendData) => {
+        this.trend = data;
+    };
+
+    setLoadingState = (state: boolean) => {
+        this.loading = state;
+    };
+
     getTrendData = ({ from, to }: { from: string; to: string }): void => {
-        this.loading = true;
+        if (!from || !to) {
+            console.log('Tried to load trend data with missing currency codes');
+            return;
+        }
+
+        this.setLoadingState(true);
 
         getExchangeTrendDataFromAPI({ from, to })
             .then((apiData) => {
                 const data = formatExchangeTrendData(apiData);
-                this.trend = data;
+                this.setTrendData(data);
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
-                this.loading = false;
+                this.setLoadingState(false);
             });
     };
 }

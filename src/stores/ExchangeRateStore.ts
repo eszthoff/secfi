@@ -13,24 +13,34 @@ export class ExchangeRateStore {
         makeAutoObservable(this);
     }
 
+    setRate = (rate: number) => {
+        this.rate = rate;
+    };
+
+    setLoadingState = (state: boolean) => {
+        this.loading = state;
+    };
+
     getExchangeRate = ({ from, to }: { from: string; to: string }): void => {
         if (!from || !to) {
-            // TODO: proper exception handling
+            console.log(
+                'Tried to load exchange data with missing currency codes'
+            );
             return;
         }
 
-        this.loading = true;
+        this.setLoadingState(true);
 
         getExchangeRateFromAPI({ from, to })
             .then((apiData) => {
                 const data = formatExchangeData(apiData);
-                this.rate = data;
+                this.setRate(data);
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
-                this.loading = false;
+                this.setLoadingState(false);
             });
     };
 }

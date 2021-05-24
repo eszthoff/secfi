@@ -25,7 +25,7 @@ export const formatExchangeTrendData = (
 
     // TODO: error handling of wrong data
     // TODO: add weekends dates (?)
-    return currentDates.map((date) => ({
+    return currentDates.reverse().map((date) => ({
         date,
         open: Number(data[date]['1. open']),
         close: Number(data[date]['4. close']),

@@ -16,7 +16,7 @@ interface Props {
 }
 
 const currencyToString = (currencyCode: string) =>
-    currencyCode ? `${currencyCode} | ${CURRENCIES[currencyCode]}` : '';
+    currencyCode ? `${currencyCode} | ${CURRENCIES[currencyCode]}` : 'None';
 
 export const CurrencySelector: React.FC<Props> = (props) => {
     const { value, onChange, label } = props;
@@ -32,7 +32,7 @@ export const CurrencySelector: React.FC<Props> = (props) => {
                 onChange={(event, newValue) => {
                     onChange(newValue);
                 }}
-                options={[...CURRENCY_CODES]}
+                options={['', ...CURRENCY_CODES]}
                 getOptionLabel={currencyToString}
                 renderInput={(params) => (
                     <TextField {...params} label={label} variant="outlined" />

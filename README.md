@@ -49,6 +49,7 @@ In addition, data caching could be implemented, depending on business requiremen
 
 -   ADD TESTS!!!
 -   more work on UI design! Including responsive layout
+-   more error handling and input clearing before processing user input (now calls are attempted also with missing data; some combination of currencies give error from the API;)
 -   a better store setup where data is automatically loaded whenever the UI changes. I would link the `UIStore` to the data stores and use `reaction` from MobX to trigger data loading whenever the UI changes.
 
 Possible UX features I would like to add if time allowed:
